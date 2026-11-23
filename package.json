@@ -1,0 +1,10 @@
+{
+  "name": "torque-deck",
+  "version": "1.0.0",
+  "description": "Jeu de cartes de voitures : paquets, collection, points, échanges entre joueurs",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED",
+  "private": true
+}

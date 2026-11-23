@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Torque Deck</title>
+<meta name="theme-color" content="#0b0d10">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Big+Shoulders+Display:wght@700;800;900&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-in">
+    <div class="logo"><i aria-hidden="true"></i>Torque Deck</div>
+    <nav aria-label="Navigation">
+      <a href="#boutique" data-v="boutique">Boutique</a>
+      <a href="#collection" data-v="collection">Collection <small id="navCount">0</small></a>
+      <a href="#echanges" data-v="echanges">Échanges <small class="dot" id="navTrade" hidden>0</small></a>
+      <a href="#points" data-v="points">Points</a>
+    </nav>
+    <div class="userbar">
+      <span class="pts" id="navPts" hidden><b id="ptsVal">0</b> pts</span>
+      <a class="pill" href="#compte" id="navUser" data-v="compte">Connexion</a>
+      <a class="adm" href="#admin" data-v="admin">Admin</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Boutique -->
+  <section class="view" id="v-boutique" aria-label="Boutique">
+    <div class="shop">
+      <div class="shop-pack">
+        <div class="ring" aria-hidden="true"></div>
+        <button class="pack-btn" id="shopPack" aria-label="Ouvrir un paquet"></button>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">Série 01 · Voitures</div>
+        <h1>Ouvre un paquet, remplis ton garage</h1>
+        <div class="count"><b id="pkCount">0</b><span>/ <i id="pkMax">10</i></span><em>paquets prêts</em></div>
+        <div class="pips" id="pips" aria-hidden="true"></div>
+        <div class="timer"><span id="timerLabel">Prochain paquet dans</span><b id="timerVal">--:--</b></div>
+        <div class="row">
+          <button class="btn" id="openBtn">Ouvrir un paquet</button>
+          <button class="btn ghost" id="buyBtn">Acheter · <span id="buyPrice">250</span> pts</button>
+        </div>
+        <ul class="odds" id="odds"></ul>
+        <p class="note">Chaque paquet contient 5 voitures différentes, dont au moins 1 rare ou mieux. La rareté dépend de la valeur de la voiture. Un nouveau paquet arrive toutes les 10 minutes, jusqu'à 10 en stock. Les paquets achetés avec des points s'ajoutent en plus.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collection -->
+  <section class="view" id="v-collection" aria-label="Collection">
+    <div class="view-head">
+      <h2>Mon garage</h2>
+      <div class="kpis">
+        <div class="kpi"><b id="kOwned">0</b><span>cartes uniques</span></div>
+        <div class="kpi"><b id="kDup">0</b><span>doublons</span></div>
+        <div class="kpi"><b id="kValue">0</b><span>valeur du garage</span></div>
+      </div>
+    </div>
+    <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- Échanges -->
+  <section class="view" id="v-echanges" aria-label="Échanges">
+    <div class="view-head">
+      <h2>Échanges</h2>
+      <div class="row"><button class="btn" id="newOffer">Nouvelle offre</button></div>
+    </div>
+    <p class="lead" id="tradeInfo"></p>
+    <div class="chips" id="tradeTabs" role="tablist">
+      <button class="chip" role="tab" data-t="market" aria-pressed="true">Marché</button>
+      <button class="chip" role="tab" data-t="mine" aria-pressed="false">Mes offres <small id="tabMine">0</small></button>
+      <button class="chip" role="tab" data-t="history" aria-pressed="false">Historique</button>
+    </div>
+    <div id="tradeBody"></div>
+  </section>
+
+  <!-- Points -->
+  <section class="view" id="v-points" aria-label="Points">
+    <div class="view-head">
+      <h2>Points</h2>
+      <div class="kpis">
+        <div class="kpi"><b id="pBal">0</b><span>points</span></div>
+        <div class="kpi"><b id="pDup">0</b><span>doublons</span></div>
+      </div>
+    </div>
+    <div class="two">
+      <div class="card-a" id="buyCard"></div>
+      <div class="card-a" id="recCard"></div>
+    </div>
+    <h3 class="sub">Mes doublons</h3>
+    <div class="mini-grid" id="dupGrid"></div>
+  </section>
+
+  <!-- Compte -->
+  <section class="view" id="v-compte" aria-label="Compte">
+    <div class="view-head"><h2>Compte</h2></div>
+    <div class="admin" id="authBox">
+      <div class="card-a">
+        <div class="tabs">
+          <button class="chip" id="tabLogin" aria-pressed="true" type="button">Connexion</button>
+          <button class="chip" id="tabReg" aria-pressed="false" type="button">Créer un compte</button>
+        </div>
+        <form class="auth" id="authForm" novalidate>
+          <label for="aName">Pseudo</label>
+          <input class="inp" id="aName" autocomplete="username" maxlength="20" autocapitalize="none" spellcheck="false">
+          <label for="aPass">Mot de passe</label>
+          <input class="inp" id="aPass" type="password" autocomplete="current-password" maxlength="100">
+          <p class="err" id="authErr" role="alert"></p>
+          <button class="btn" type="submit" id="authBtn">Se connecter</button>
+        </form>
+        <p class="note">Pseudo de 3 à 20 caractères (lettres, chiffres, - ou _). Mot de passe de 6 caractères minimum. À la création du compte, tu reçois 10 paquets.</p>
+      </div>
+    </div>
+    <div class="admin" id="meBox" hidden>
+      <div class="card-a">
+        <h3 id="meName"></h3>
+        <dl class="kv">
+          <dt>Paquets en stock</dt><dd id="mePacks">0</dd>
+          <dt>Paquets ouverts</dt><dd id="meOpened">0</dd>
+          <dt>Cartes uniques</dt><dd id="meUnique">0</dd>
+          <dt>Points</dt><dd id="mePoints">0</dd>
+        </dl>
+        <div class="row"><button class="btn ghost" id="logoutBtn">Se déconnecter</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin -->
+  <section class="view" id="v-admin" aria-label="Administration">
+    <div class="view-head"><h2>Administration</h2></div>
+    <div class="admin" id="adminGate">
+      <div class="card-a">
+        <h3>Accès réservé</h3>
+        <p>Entre le code administrateur.</p>
+        <form class="row" id="adminForm" autocomplete="off">
+          <input class="field" id="adminPass" type="password" inputmode="numeric" maxlength="100" aria-label="Code administrateur" placeholder="••••">
+          <button class="btn ghost" type="submit">Entrer</button>
+        </form>
+        <p class="err" id="adminErr" role="alert"></p>
+      </div>
+    </div>
+    <div class="admin" id="adminPanel" hidden>
+      <div class="card-a">
+        <h3>Vue d'ensemble</h3>
+        <dl class="kv">
+          <dt>Joueurs</dt><dd id="sPlayers">0</dd>
+          <dt>Paquets ouverts (total)</dt><dd id="sOpened">0</dd>
+          <dt>Offres d'échange en cours</dt><dd id="sOffers">0</dd>
+          <dt>Cartes dans le jeu</dt><dd id="sCards">0</dd>
+          <dt>Cadence</dt><dd id="sRate">-</dd>
+        </dl>
+        <div class="row">
+          <button class="btn" id="aResetAll">Réinitialiser les paquets de tous</button>
+          <button class="btn ghost" id="aCancelOffers">Annuler toutes les offres</button>
+          <button class="btn ghost" id="aRefresh">Actualiser</button>
+        </div>
+        <p>Réinitialiser remet chaque joueur à 10 paquets s'il en a moins, et garde les paquets achetés en plus.</p>
+      </div>
+      <div class="card-a">
+        <h3>Joueurs</h3>
+        <div class="pl-list" id="plList"></div>
+      </div>
+      <div class="card-a">
+        <h3>Photos des voitures</h3>
+        <p>Ajoute une vraie photo pour chaque voiture : elle remplace le dessin sur la carte, pour tous les joueurs. Utilise des images dont tu as les droits. Elles sont recadrées au format de la carte. <b id="phCount">0 / 100</b></p>
+        <div class="ph-list" id="photoList"></div>
+      </div>
+      <div class="row"><button class="btn ghost" id="aLogout">Verrouiller</button></div>
+    </div>
+  </section>
+</main>
+
+<div class="stage" id="stage" hidden role="dialog" aria-label="Ouverture du paquet">
+  <div class="rays" aria-hidden="true"></div>
+  <button class="btn ghost stage-x" id="stageClose">Fermer</button>
+  <div class="stage-msg" id="stageMsg"></div>
+  <div class="pack-wrap" id="packWrap"></div>
+  <div class="hand" id="hand"></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <div class="stage-actions" id="stageActions"></div>
+  <div class="banner" id="banner"></div>
+  <div class="flash" id="flash"></div>
+  <div class="fx" id="fx"></div>
+</div>
+<div class="lightbox" id="lightbox" hidden></div>
+<div class="modal" id="modal" hidden></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="/data.js"></script>
+<script src="/desc.js"></script>
+<script src="/art.js"></script>
+<script src="/app.core.js"></script>
+<script src="/app.shop.js"></script>
+<script src="/app.eco.js"></script>
+<script src="/app.admin.js"></script>
+<script src="/app.main.js"></script>
+</body>
+</html>
