@@ -10,7 +10,7 @@ const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(__dirname, 'data
 const PUB = path.join(__dirname, 'public');
 const PHOTO_DIR = path.join(DATA_DIR, 'photos');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '1188';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '8811';
 const TRUST_PROXY = process.env.TRUST_PROXY === '1';
 const MAX_PACKS = +process.env.MAX_PACKS || 10;
 const INTERVAL = (+process.env.PACK_INTERVAL_MIN || 10) * 60 * 1000;
